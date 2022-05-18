@@ -64,11 +64,11 @@ defmodule Evidencia do
     Regex.run()
   end
 
-  def getWhitespaces(line, htmlLine) do
+  def getNull(line, htmlLine) do
     Regex.run()
   end
 
-  def getNull(line, htmlLine) do
+  def getWhitespaces(line, htmlLine) do
     lineTemp = line
     [whitespaces] = Regex.run(~r/^\s*/, lineTemp)
     line = elem(String.split_at(lineTemp, String.length(whitespaces)),1)

@@ -38,7 +38,8 @@ defmodule Evidencia do
     lineTemp = line
     [puntuation] = Regex.run(~r/^[{}\[\]:,]/, line)
     line = elem(String.split_at(lineTemp, String.length(puntuation)),1)
-    htmlLine = "<span class=\"puntuation\">#{puntuation}</span>"
+    tags = "<span class=\"puntuation\">#{puntuation}</span>"
+    htmlLine = "#{htmlLine}#{tags}"
     {line, htmlLine}
   end
 
@@ -46,7 +47,8 @@ defmodule Evidencia do
     lineTemp = line
     [completeLine, objectKey, puntuation] = Regex.run(~r/^(".*?")(:)/, line)
     line = elem(String.split_at(lineTemp, String.length(completeLine)),1)
-    htmlLine = "<span class=\"objectKey\">#{objectKey}</span><span class=\"puntuation\">#{puntuation}</span>"
+    tags = "<span class=\"objectKey\">#{objectKey}</span><span class=\"puntuation\">#{puntuation}</span>"
+    htmlLine = "#{htmlLine}#{tags}"
     {line, htmlLine}
   end
 
@@ -67,6 +69,10 @@ defmodule Evidencia do
   end
 
   def getNull(line, htmlLine) do
-    Regex.run()
+    lineTemp = line
+    [whitespaces] = Regex.run(~r/^\s*/, lineTemp)
+    line = elem(String.split_at(lineTemp, String.length(whitespaces)),1)
+    htmlLine = "#{htmlLine}#{whitespaces}"
+    {line, htmlLine}
   end
 end

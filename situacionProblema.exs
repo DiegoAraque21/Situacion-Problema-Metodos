@@ -39,6 +39,7 @@ defmodule Evidencia do
     [puntuation] = Regex.run(~r/^[{}\[\]:,]/, line)
     line = elem(String.split_at(lineTemp, String.length(puntuation)),1)
     htmlLine = "<span class=\"puntuation\">#{puntuation}</span>"
+    {line, htmlLine}
   end
 
   def getObjectKey(line, htmlLine) do

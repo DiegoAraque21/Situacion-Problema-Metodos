@@ -34,8 +34,11 @@ defmodule Evidencia do
     do_readLine(elem(tuple, 0), elem(tuple, 1))
   end
 
-  def getPuntuation() do
-    Regex.replace()
+  def getPuntuation(line, htmlLine) do
+    lineTemp = line
+    [puntuation] = Regex.run(~r/^[{}\[\]:,]/, line)
+    line = elem(String.split_at(lineTemp, String.length(puntuation)),1)
+    htmlLine = "<span class=\"puntuation\">#{puntuation}</span>"
   end
 
   def getObjectKey(line, htmlLine) do
@@ -43,6 +46,7 @@ defmodule Evidencia do
     [completeLine, objectKey, puntuation] = Regex.run(~r/^(".*?")(:)/, line)
     line = elem(String.split_at(lineTemp, String.length(completeLine)),1)
     htmlLine = "<span class=\"objectKey\">#{objectKey}</span><span class=\"puntuation\">#{puntuation}</span>"
+    {line, htmlLine}
   end
 
   def getString(line, htmlLine) do

@@ -103,15 +103,30 @@ defmodule Evidencia do
   end
 
   def getNum(line, htmlLine) do
-    Regex.run()
+    lineTemp = line
+    [number] = Regex.run(~r/\d.*\d+/,line)
+    line = elem(String.split_at(lineTemp, String.length(string)),1)
+    tags = "<span class=\"number\">#{number}</span>
+    htmlLine = "#{htmlLine}#{tags}"
+    {line, htmlLine}
   end
 
   def getBool(line, htmlLine) do
-    Regex.run()
+    lineTemp = line
+    [boolean] = Regex.run(~r/true|false/,line)
+    line = elem(String.split_at(lineTemp, String.length(boolean)),1)
+    tags = "<span class=\"boolean\">#{boolean}</span>
+    htmlLine = "#{htmlLine}#{tags}"
+    {line, htmlLine}
   end
 
   def getNull(line, htmlLine) do
-    Regex.run()
+    lineTemp = line
+    [nullVal] = Regex.run(~r/null/,line)
+    line = elem(String.split_at(lineTemp, String.length(nullVal)),1)
+    tags = "<span class=\"nullVal\">#{nullVal}</span>
+    htmlLine = "#{htmlLine}#{tags}"
+    {line, htmlLine}
   end
 
   def getWhitespaces(line, htmlLine) do

@@ -9,7 +9,6 @@ defmodule Evidencia do
       in_filename
       |> File.stream!()
       |> Enum.map(&readLine/1)
-      |> IO.inspect()
       |> Enum.join("")
     html = """
     <!DOCTYPE html>
@@ -60,17 +59,33 @@ defmodule Evidencia do
     end
   end
   defp do_readPuntuation(line, htmlLine) do
-    tuple = getPuntuation(line, htmlLine)
+    if !Regex.run(~r/^[{}\[\]:,]/, line) do
+      do_readNum(line, htmlLine)
+    else
+      tuple = getPuntuation(line, htmlLine)
+      do_readLine(elem(tuple, 0), elem(tuple, 1))
+    end
+  end
+  defp do_readNum(line, htmlLine) do
+    if !Regex.run(~r/^[-+]?\d*\.?\d+[eE]?[-+]?\d*/,line) do
+      do_readBool(line,htmlLine)
+    else
+      tuple = getNum(line, htmlLine)
+      do_readLine(elem(tuple, 0), elem(tuple, 1))
+    end
+  end
+  defp do_readBool(line, htmlLine) do
+    if !Regex.run(~r/^true|^false/,line) do
+      do_readNull(line,htmlLine)
+    else
+      tuple = getBool(line, htmlLine)
+      do_readLine(elem(tuple, 0), elem(tuple, 1))
+    end
+  end
+  defp do_readNull(line, htmlLine) do
+    tuple = getNull(line, htmlLine)
     do_readLine(elem(tuple, 0), elem(tuple, 1))
   end
-  # defp do_readLine(line, htmlLine) do
-  #   tuple = getNum(line, htmlLine)
-  #   do_readLine(elem(tuple, 0), elem(tuple, 1))
-  # end
-  # defp do_readLine(line, htmlLine) do
-  #   tuple = getBool(line, htmlLine)
-  #   do_readLine(elem(tuple, 0), elem(tuple, 1))
-  # end
 
   # Helper Functions that identify each valid section
   # through regular expressions and return a tupple
@@ -88,7 +103,7 @@ defmodule Evidencia do
     lineTemp = line
     [completeLine, objectKey, puntuation] = Regex.run(~r/^(".*?")(:)/, line)
     line = elem(String.split_at(lineTemp, String.length(completeLine)),1)
-    tags = "<span class=\"objectKey\">#{objectKey}</span><span class=\"puntuation\">#{puntuation}</span>"
+    tags = "<span class=\"object-key\">#{objectKey}</span><span class=\"punctuation\">#{puntuation}</span>"
     htmlLine = "#{htmlLine}#{tags}"
     {line, htmlLine}
   end
@@ -104,27 +119,27 @@ defmodule Evidencia do
 
   def getNum(line, htmlLine) do
     lineTemp = line
-    [number] = Regex.run(~r/[-+]*\d+\.*\d*[eE]*[-+]*\d*/,line)
-    line = elem(String.split_at(lineTemp, String.length(string)),1)
-    tags = "<span class=\"number\">#{number}</span>
+    [number] = Regex.run(~r/^[-+]?\d*\.?\d+[eE]?[-+]?\d*/,line)
+    line = elem(String.split_at(lineTemp, String.length(number)),1)
+    tags = "<span class=\"number\">#{number}</span>"
     htmlLine = "#{htmlLine}#{tags}"
     {line, htmlLine}
   end
 
   def getBool(line, htmlLine) do
     lineTemp = line
-    [boolean] = Regex.run(~r/true|false/,line)
+    [boolean] = Regex.run(~r/^true|^false/,line)
     line = elem(String.split_at(lineTemp, String.length(boolean)),1)
-    tags = "<span class=\"boolean\">#{boolean}</span>
+    tags = "<span class=\"reserved-word\">#{boolean}</span>"
     htmlLine = "#{htmlLine}#{tags}"
     {line, htmlLine}
   end
 
   def getNull(line, htmlLine) do
     lineTemp = line
-    [nullVal] = Regex.run(~r/null/,line)
+    [nullVal] = Regex.run(~r/^null/,line)
     line = elem(String.split_at(lineTemp, String.length(nullVal)),1)
-    tags = "<span class=\"nullVal\">#{nullVal}</span>
+    tags = "<span class=\"reserved-word\">#{nullVal}</span>"
     htmlLine = "#{htmlLine}#{tags}"
     {line, htmlLine}
   end

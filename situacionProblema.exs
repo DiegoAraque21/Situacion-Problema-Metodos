@@ -11,6 +11,21 @@ defmodule Evidencia do
       |> Enum.map(&readLine/1)
       |> IO.inspect()
       |> Enum.join("")
+    html = """
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>JSON Code</title>
+      <link rel="stylesheet" href="token_colors.css" />
+      </head>
+      <body>
+        <h1>#{NaiveDateTime.local_now}</h1>
+        <pre>
+    #{html}
+        </pre>
+      </body>
+    </html>
+    """
     File.write(out_filename, html)
   end
 

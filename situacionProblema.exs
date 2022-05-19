@@ -104,7 +104,7 @@ defmodule Evidencia do
 
   def getNum(line, htmlLine) do
     lineTemp = line
-    [number] = Regex.run(~r/\d.*\d+/,line)
+    [number] = Regex.run(~r/[-+]*\d.*\d+[eE]*[-+]*\d*/,line)
     line = elem(String.split_at(lineTemp, String.length(string)),1)
     tags = "<span class=\"number\">#{number}</span>
     htmlLine = "#{htmlLine}#{tags}"

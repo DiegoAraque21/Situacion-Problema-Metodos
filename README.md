@@ -30,7 +30,7 @@ Evidencia.parseJSON("path of the json file","path of the html file")
 
 Bonus:
 
-- Whitesapces: It is not a token, but our program read every whitespace so the result in the HTML is formatted equally as the one in the JSON file.
+- Whitesapces: It is not a token, but our program reads every whitespace so the result in the HTML is formatted equally as the one in the JSON file.
 
 ## Regular Expressions
 

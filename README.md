@@ -1,6 +1,11 @@
 # Syntax Highlighter
 
+Diego Araque and Francisco Salcedo
+
 ## How to run our program
+
+First of all you should install elixir in your computer (the following link will help you to do that):
+https://joyofelixir.com/a-setup-and-install
 
 #### Start it from the Terminal
 
@@ -42,6 +47,24 @@ Bonus:
 - Bool: ^true|^false -> It searchs for false or true in the beginning of the line
 - Null: ^null -> It searchs for null in the beginning of the line.
 
-## Reflexion
+## Reflection of our solution
 
-## Complejidad del Algoritmo
+The functionality of the prgram is the following:
+
+- First of all the file is divided into lines
+- Each line is analyzed. Everytime a regular expression matches with the beginning of the line, the matched part is taken out of the line and added to an htmlLine variable, which will consist of:
+  html
+  ```
+  <span class="type-of-the-token">value-of-the-token</span>
+  ```
+- The function that replaces the string with an html span tag is called recursevly for each line, when the normal line is empty, it returns the html line and analyzes the next one.
+- When the is completely parsed, it return a list. Which contains all the html tags and spaces of each line, so we join them to get a string.
+- At last this final html is introduced to the basic HTML skeleton and its respective styling and date.
+
+The solution proposed doesn't have a high complexity, because of that we are able to parse the files relatively faster.
+
+In our opinion it can also be improved by adding different functionalities, so our code can parse other languages and not just JSON files. But it will be a lot more work since we will need to add syntax rules for each language and make the default code work for every single one. This wasn't done because it wasn't in the scope of the activity. But it can be seen as a future improvement.
+
+## Algorithm complexity
+
+Our algorithm is O(n) in other words is constant, n being the number of tokens and spaces in the file. This is because the file is only looped once.

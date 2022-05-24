@@ -43,7 +43,7 @@ defmodule Evidencia do
     end
   end
   defp do_readObjectKey(line, htmlLine) do
-    if !Regex.run(~r/^(".*?")(:)/, line) do
+    if !Regex.run(~r/^("[-\w:]+")(?=:)/, line) do
       do_readString(line,htmlLine)
     else
       tuple = getObjectKey(line, htmlLine)
@@ -51,7 +51,7 @@ defmodule Evidencia do
     end
   end
   defp do_readString(line, htmlLine) do
-    if !Regex.run(~r/^".*?"/, line) do
+    if !Regex.run(~r/^".*?"(?![:])/, line) do
       do_readPuntuation(line, htmlLine)
     else
       tuple = getString(line, htmlLine)
@@ -101,16 +101,16 @@ defmodule Evidencia do
 
   def getObjectKey(line, htmlLine) do
     lineTemp = line
-    [completeLine, objectKey, puntuation] = Regex.run(~r/^(".*?")(:)/, line)
+    [completeLine] = Regex.run(~r/^"[-\w:]+"(?=:)/, line)
     line = elem(String.split_at(lineTemp, String.length(completeLine)),1)
-    tags = "<span class=\"object-key\">#{objectKey}</span><span class=\"punctuation\">#{puntuation}</span>"
+    tags = "<span class=\"object-key\">#{completeLine}</span>"
     htmlLine = "#{htmlLine}#{tags}"
     {line, htmlLine}
   end
 
   def getString(line, htmlLine) do
     lineTemp = line
-    [string] = Regex.run(~r/^".*?"/, line)
+    [string] = Regex.run(~r/^".*?"(?![:])/, line)
     line = elem(String.split_at(lineTemp, String.length(string)),1)
     tags = "<span class=\"string\">#{string}</span>"
     htmlLine = "#{htmlLine}#{tags}"

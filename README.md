@@ -21,7 +21,7 @@ Evidencia.parseJSON("path of the json file","path of the html file")
 
 ## JSON tokens
 
-- Object-Keys: They are strings that come before a colon (:). This token makes it easy to acces values in our JSON.
+- Object-Keys: They are strings that come before a colon (:). This token makes it easy to access values in our JSON.
   - Example -> "movie": 14 -> "movie" is the object key
 - String: Its a group of characters that's inside quotaion marks
   - Example -> "movie:": "The Avengers" -> "The Avengers is the string"
@@ -39,8 +39,8 @@ Bonus:
 
 ## Regular Expressions
 
-- Object Keys: ^(".\*?")(:) -> It detects every set of characters inside of wuotation marks and it has to end with a colo. Also It only matches if the beginning of the line matches this conditions.
-- String: ^".\*?" -> It only matches the beginning of the line with any set of characters inside wuotation marks.
+- Object Keys: ^("[-\w:]+")(?=:) -> It detects every set of characters inside of quotation marks and it has to end with a colon. It only matches if the beginning of the line matches this conditions.
+- String: ^".\*?"(?![:] -> It only matches the beginning of the line with any set of characters inside wuotation marks.
 - Numbers: ^[-+]?\d*\.?\d+[eE]?[-+]?\d* -> It only matches when the beginning of the line has any of the numbers described in the JSON tokens section.
 - Whitespaces: ^\s+ -> It only matches in the beginning of the line for one or more spaces.
 - Puntuation: ^[{}\[\]:,] -> It matches in the beginning of a line where one of this characters ({}[]:,) is found

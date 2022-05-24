@@ -43,7 +43,7 @@ defmodule Evidencia do
     end
   end
   defp do_readObjectKey(line, htmlLine) do
-    if !Regex.run(~r/^("[-\w:]+")(?=:)/, line) do
+    if !Regex.run(~r/^"[-\w:]+"(?=:)/, line) do
       do_readString(line,htmlLine)
     else
       tuple = getObjectKey(line, htmlLine)

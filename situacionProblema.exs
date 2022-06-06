@@ -4,6 +4,22 @@
 # 2022 - 05 - 20
 
 defmodule Evidencia do
+
+  def getJsonFolder() do
+    ["JSON/example_0.json", "JSON/example_1.json", "JSON/example_2.json",
+    "JSON/example_3.json","JSON/example_4.json","JSON/example_5.json",
+    "JSON/example_6.json", "JSON/example_7.json","JSON/example_8.json",
+    "JSON/example_9.json", "JSON/example_10.json", "JSON/example_11.json",
+    "JSON/example_12.json"]
+  end
+
+  # Concurrently parse all the files in the JSON folder or the ones given by the suer
+  def parseJsonConcurrently(files \\ getJsonFolder()) do
+    files
+    |> Enum.map(&Task.start(fn ->
+      parseJSON(&1, String.replace(String.replace(&1,".json",".html"),"JSON/","HTML/")) end))
+  end
+
   def parseJSON(in_filename, out_filename) do
     html =
       in_filename
@@ -151,4 +167,12 @@ defmodule Evidencia do
     htmlLine = "#{htmlLine}#{whitespaces}"
     {line, htmlLine}
   end
+
+  def calculateTime(function) do
+    function
+    |> :timer.tc
+    |> elem(0)
+    |> Kernel./(1_000_000)
+  end
+
 end

@@ -5,6 +5,8 @@
 
 defmodule Evidencia do
 
+  # If the parseJsonConcurrently function is called with no argument
+  # all of the files in the JSON folder will be parsed
   def getJsonFolder() do
     ["JSON/example_0.json", "JSON/example_1.json", "JSON/example_2.json",
     "JSON/example_3.json","JSON/example_4.json","JSON/example_5.json",
@@ -13,13 +15,14 @@ defmodule Evidencia do
     "JSON/example_12.json"]
   end
 
-  # Concurrently parse all the files in the JSON folder or the ones given by the suer
+  # Concurrently parse all the files in the JSON folder or the ones given by the user
   def parseJsonConcurrently(files \\ getJsonFolder()) do
     files
     |> Enum.map(&Task.start(fn ->
       parseJSON(&1, String.replace(String.replace(&1,".json",".html"),"JSON/","HTML/")) end))
   end
 
+  # Function that parses the .json file
   def parseJSON(in_filename, out_filename) do
     html =
       in_filename
@@ -168,6 +171,8 @@ defmodule Evidencia do
     {line, htmlLine}
   end
 
+  # This function lets us calculate the time the function lasts until
+  # everything is completed
   def calculateTime(function) do
     function
     |> :timer.tc

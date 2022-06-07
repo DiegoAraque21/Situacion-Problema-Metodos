@@ -19,6 +19,21 @@ iex situacionProblema.exs
 Evidencia.parseJSON("path of the json file","path of the html file")
 ```
 
+#### How to run our program concurrently
+
+- If you want to parse all the files in the JSON folder run the following command in the terminal:
+  ```
+  Evidencia.parseJsonConcurrently()
+  ```
+- If you want to parse the files you want you should just include them in the JSON folder ande run the following command:
+  ```
+  Evidencia.parseJsonConcurrently([List of the files you want to parse])
+  ```
+  - An example could be:
+    ```
+    Evidencia.parseJsonConcurrently(["JSON/example_0.json","JSON/example_7.json", "JSON/example_12.json"])
+    ```
+
 ## JSON tokens
 
 - Object-Keys: They are strings that come before a colon (:). This token makes it easy to access values in our JSON.

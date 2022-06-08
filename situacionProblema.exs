@@ -18,8 +18,9 @@ defmodule Evidencia do
   # Concurrently parse all the files in the JSON folder or the ones given by the user
   def parseJsonConcurrently(files \\ getJsonFolder()) do
     files
-    |> Enum.map(&Task.start(fn ->
+    |> Enum.map(&Task.async(fn ->
       parseJSON(&1, String.replace(String.replace(&1,".json",".html"),"JSON/","HTML/")) end))
+    |> Enum.map(&Task.await(&1))
   end
 
   # Function that parses the .json file

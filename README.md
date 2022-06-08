@@ -96,3 +96,9 @@ Our algorithm is O(n), n being the number of tokens and spaces in the file. This
 - Concurrent Algorithm
   - As we mentioned in the sequential section. This one is not only faster, but can read all the files of the JSON folder or the ones of your linking in one command.
   - This one lasts 0.4 second which it's twice as fast as the sequential one.
+
+## Conclusions
+
+As a team we think the concurrency program is not only faster but a life saver. It lets us parse all the files we want at the same time. It's a concept that can be applied to the solution of other projects, and it would definetly help us improve it.
+
+But we also need to be carefull, since it can't be implemented in some solutions. After implementing our normal solution we can seek to improve it with this concept, but if it can't be done then we should not force it, because the program will be slower.

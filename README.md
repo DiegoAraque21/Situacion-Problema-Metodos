@@ -91,10 +91,10 @@ Our algorithm is O(n), n being the number of tokens and spaces in the file. This
 - Sequential Algorithm
 
   - When each file is called by itself it adds up to more time in total to the one we get in the concurrent function. Besides we need to type allf of this commands one by one. If we want to parse more and more .json files, this would have been very tedious and time consuming.
-  - All 12 files add up to a total time of 0.83 seconds wich is 0.4 seconds slower than the other implementation. We also need to keep in mind the time you need to type each command, if we use more files and also bigger files, the difference in time will be bigger.
+  - All 12 files add up to a total time of 0.83. We also need to keep in mind the time you need to type each command, if we use more files and also bigger files, the difference in time will be bigger.
 
 - Concurrent Algorithm
-  - As we mentioned in the sequential section. This one is not only faster, but can read all the files of the JSON folder or the ones of your linking in one command.
+  - As we mentioned in the sequential section. This one is not only faster, but can read all the files of the JSON folder or the ones of your liking in one command.
   - This one lasts 0.4 second which it's twice as fast as the sequential one.
 
 The speedup is how our program performs ion comparison to another one. In this case it is calculated by dividing the time of all the sequential algorithms by the time of the concurrent algorithm.  

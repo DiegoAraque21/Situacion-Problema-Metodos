@@ -8,7 +8,7 @@ defmodule Evidencia do
   # If the parseJsonConcurrently function is called with no argument
   # all of the files in the JSON folder will be parsed
   def getJsonFolder() do
-    ["JSON/example_0.json", "JSON/example_1.json", "JSON/example_2.json",
+    ["JSON/example_1.json", "JSON/example_2.json",
     "JSON/example_3.json","JSON/example_4.json","JSON/example_5.json",
     "JSON/example_6.json", "JSON/example_7.json","JSON/example_8.json",
     "JSON/example_9.json", "JSON/example_10.json", "JSON/example_11.json",

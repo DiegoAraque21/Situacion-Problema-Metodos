@@ -101,7 +101,7 @@ The speedup is how our program performs ion comparison to another one. In this c
 ```math
 S = 0.83/0.4
 ```
-The speedup (S) of our program is equal to 2. This confirms the fact, that our concurrent program is faster.
+The speedup (S) of our program is equal to 2. This confirms the fact, that our concurrent program is 2 times faster than the sequential one.
 
 ## Conclusions
 

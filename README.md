@@ -82,7 +82,7 @@ In our opinion it can also be improved by adding different functionalities, so o
 
 ## Algorithm complexity
 
-Our algorithm is O(n), n being the number of tokens and spaces in the file. This is because the file is only looped once and it will read n amount of tokens.
+Our algorithm is K*O(n), n being the number of tokens and spaces in the file. This is because the file is only looped once and it will read n amount of tokens. K will be the amount of files you want to parse. 
 
 ## Time it takes
 

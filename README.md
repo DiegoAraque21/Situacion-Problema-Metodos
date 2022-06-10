@@ -110,6 +110,6 @@ The speedup (S) of our program is equal to 3.4. This confirms the fact, that our
 
 As a team we think the concurrency program is not only faster but a life saver. It lets us parse all the files we want at the same time. It's a concept that can be applied to the solution of other projects, and it would definetly help us improve it.
 
-But we also need to be carefull, since it can't be implemented in some solutions. After implementing our normal solution we can seek to improve it with this concept, but if it can't be done then we should not force it, because the program will be slower.
+But we also need to be carefull, since it can't be implemented in some solutions. After implementing our normal solution we can seek to improve it with this concept, but if it can't be done then we shouldn't force it, because the program will be slower. For example if the task can't be divided esaily, it will create a lot of problems. Maybe it is faster to do it without dividing the problem and doing it all in one run. So a recommendation will be to first analyze the problem, and see if this concept can be applied to the solution.
 
 Naturally if we use bigger and bigger files, the difference in time will increase and it will be more noteable the reason to use this type of algorithms.
